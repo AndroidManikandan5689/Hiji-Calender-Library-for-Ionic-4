@@ -1,0 +1,44 @@
+<ion-content no-padding>
+  <div class="contentMargin bgWhite">
+    <ion-item lines="none" padding-horizontal class="darksand taCenter" style="--min-height:30px">
+      <ion-label>{{ days }}</ion-label>
+    </ion-item>
+    <ion-item lines="none" no-padding class="taCenter">
+      <ion-label style="font-size:1.2em;">{{ months }}</ion-label>
+    </ion-item>
+    <ion-item no-padding lines="none" style="--min-height:30px">
+      <h1 class="taCenter" style="font-size:3em;margin:0;line-height:0.9;">{{ dateVal }}</h1>
+    </ion-item>
+    <ion-item no-padding class="taCenter" lines="none" style="position:relative;--min-height:24px">
+        <ion-select placeholder="Year" interface="popover" (ionChange)='selectedYear($event)' *ngIf='!hijriDropdown' [(ngModel)]="gyear">
+        <ion-select-option *ngFor="let gyear of yearList" value='{{gyear}}'>{{gyear}}</ion-select-option>
+      </ion-select>
+      <div class="lblCalendarContainer" ion-text-center style="--padding-top:0px;--min-height:40px">
+        <ion-label class="lblCalendar">{{hijriYear}}{{normalYear}}</ion-label>
+        <ion-icon name="arrow-down" mode="ios"></ion-icon>
+      </div>
+      <ion-select interface="popover" placeholder="Year" no-padding autoclose="false" 
+        (ionChange)='selectedHYear($event)' *ngIf='hijriDropdown' [(ngModel)]="hyear" placeholder='{{hyear}}'>
+        <ion-select-option  *ngFor="let hyear of hijriYearList" value='{{hyear}}'>{{hyear}}</ion-select-option>
+      </ion-select>
+      <!-- </ion-select> -->
+    </ion-item>
+    <ion-item class="dullbrown">
+      <ion-label>{{ "display_hijri" | translate }}</ion-label>
+      <ion-toggle mode="ios" slot="end" name="blueberry" (ionChange)='toggleCheck($event)'></ion-toggle>
+    </ion-item>
+
+    <ion-calendar #calendar [(ngModel)]="date" [options]="options" type="string" goYear='goYear' format="YYYY-MM-DD"
+      (select)="onSelect($event)" no-padding>
+    </ion-calendar>
+    <div style="display:flexbox">
+      <ion-button slot="start" style="display:inline-flex; width:48%;" (click)="btnCancel()">
+        {{ "Cancel" | translate }}
+      </ion-button>
+      <ion-button slot="end" style="display:inline-flex; width:48%;" (click)="goBack()">
+        {{ "OK" | translate }}
+      </ion-button>
+    </div>
+    <!-- <ion-button (click)="openCalendar()">{{ departDate }}</ion-button> -->
+  </div>
+</ion-content>
