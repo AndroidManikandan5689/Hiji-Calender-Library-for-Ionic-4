@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { defaults } from '../config';
-import { Globals } from 'src/app/util/globals';
-import { AR } from 'src/app/util/constants';
 
 @Component({
   selector: 'ion-calendar-week',
@@ -23,8 +21,8 @@ export class CalendarWeekComponent {
 
   directions = 'left';
 
-  constructor(public globals: Globals) {
-    (this.globals.language == AR) ? this.directions = 'right' : '';
+  constructor() {
+    // (this.globals.language == AR) ? this.directions = 'right' : '';
   }
 
   @Input()

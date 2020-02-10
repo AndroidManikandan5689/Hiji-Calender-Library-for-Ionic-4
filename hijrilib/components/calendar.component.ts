@@ -13,12 +13,9 @@ import { CalendarService } from '../services/calendar.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import * as moment from 'moment';
-import * as moments from 'src/app/util/moment-hijri';
+import * as moments from '../../utils/moment-hijri';
 import { defaults, pickModes } from '../config';
-import { StorageService } from 'src/app/core/services/storage.service';
-import { AR } from 'src/app/util/constants';
 import { Events } from '@ionic/angular';
-import { Globals } from 'src/app/util/globals';
 
 export const ION_CAL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -147,9 +144,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   forwardArrowIcon: string = 'ios-arrow-forward';
 
   constructor(public calSvc: CalendarService,
-    public storage: StorageService,
-    public event: Events,
-    public globals: Globals) { }
+    public event: Events) { }
 
   ngOnInit(): void {
     this.initOpt();
@@ -312,12 +307,12 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   _monthFormat(date: number): string {
-    (this.language == AR) ? moment.locale('ar-SA') : moment.locale(this.language);
+    (this.language == "AR") ? moment.locale('ar-SA') : moment.locale(this.language);
     return moment(date).format('MMMM') + moment(date).clone().locale('en').format(' YYYY');
   }
 
   _monthHijriFormat(date: number): string {
-    (this.language == AR) ? moment.locale('ar-SA') : moment.locale(this.language);
+    (this.language == "AR") ? moment.locale('ar-SA') : moment.locale(this.language);
 
     var first = moments(moment(date).format('YYYYMM') + '01');
     first = first.format('iMMMM') + first.clone().locale('en').format(' iYYYY');
@@ -346,22 +341,22 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   private initOpt(): void {
 
-    this.storage.retrieveData("LanguageChangeValue").then(LanguageChangeValue => {
-      console.log('Langulage -' + LanguageChangeValue)
-      if (LanguageChangeValue) {
-        this.language = LanguageChangeValue;
-        if (LanguageChangeValue == AR) {
-          this.backArrowIcon = 'ios-arrow-forward';
-          this.forwardArrowIcon = 'ios-arrow-back';
-          this.directions = true;
-        }
-        else {
-          this.backArrowIcon = 'ios-arrow-back';
-          this.forwardArrowIcon = 'ios-arrow-forward';
-          this.directions = false;
-        }
-      }
-    });
+    // this.storage.retrieveData("LanguageChangeValue").then(LanguageChangeValue => {
+    //   console.log('Langulage -' + LanguageChangeValue)
+    //   if (LanguageChangeValue) {
+    //     this.language = LanguageChangeValue;
+    //     if (LanguageChangeValue == AR) {
+    //       this.backArrowIcon = 'ios-arrow-forward';
+    //       this.forwardArrowIcon = 'ios-arrow-back';
+    //       this.directions = true;
+    //     }
+    //     else {
+    //       this.backArrowIcon = 'ios-arrow-back';
+    //       this.forwardArrowIcon = 'ios-arrow-forward';
+    //       this.directions = false;
+    //     }
+    //   }
+    // });
 
     if (this._options && typeof this._options.showToggleButtons === 'boolean') {
       this.showToggleButtons = this._options.showToggleButtons;

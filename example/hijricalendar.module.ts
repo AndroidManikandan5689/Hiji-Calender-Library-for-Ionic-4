@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HijricalendarPage } from './hijricalendar.page';
-import { SharedModule } from '../shared/shared.module';
+import { CalendarModule } from '../hijrilib';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    SharedModule,
+    CalendarModule,
     RouterModule.forChild(routes)
   ],
   declarations: [HijricalendarPage]

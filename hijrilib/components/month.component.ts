@@ -2,8 +2,6 @@ import { Component, ChangeDetectorRef, Input, Output, EventEmitter, forwardRef, 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode } from '../calendar.model';
 import { defaults, pickModes } from '../config';
-import { Globals } from 'src/app/util/globals';
-import { AR } from 'src/app/util/constants';
 
 export const MONTH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -106,9 +104,8 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
     return this.pickMode === pickModes.RANGE;
   }
 
-  constructor(public ref: ChangeDetectorRef,
-    public globals: Globals) {
-    (this.globals.language == AR) ? this.directions = 'right' : '';
+  constructor(public ref: ChangeDetectorRef) {
+    // (this.globals.language == AR) ? this.directions = 'right' : '';
   }
 
   ngAfterViewInit(): void {

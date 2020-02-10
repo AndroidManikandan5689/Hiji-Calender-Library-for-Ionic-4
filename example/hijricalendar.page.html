@@ -24,7 +24,7 @@
       <!-- </ion-select> -->
     </ion-item>
     <ion-item class="dullbrown">
-      <ion-label>{{ "display_hijri" | translate }}</ion-label>
+      <ion-label>{{ "display_hijri" }}</ion-label>
       <ion-toggle mode="ios" slot="end" name="blueberry" (ionChange)='toggleCheck($event)'></ion-toggle>
     </ion-item>
 
@@ -33,10 +33,10 @@
     </ion-calendar>
     <div style="display:flexbox">
       <ion-button slot="start" style="display:inline-flex; width:48%;" (click)="btnCancel()">
-        {{ "Cancel" | translate }}
+        {{ "Cancel" }}
       </ion-button>
       <ion-button slot="end" style="display:inline-flex; width:48%;" (click)="goBack()">
-        {{ "OK" | translate }}
+        {{ "OK" }}
       </ion-button>
     </div>
     <!-- <ion-button (click)="openCalendar()">{{ departDate }}</ion-button> -->

@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import * as moment from 'moment';
-import * as moments from 'moment-hijri';
+import * as moments from '../../utils/moment-hijri';
 
 import {
   CalendarOriginal,
